@@ -12,7 +12,7 @@ public class ProductBasket {
                 arrProduct[i] = new Product(product.getProductName(), product.getProductCost());
                 break;
             }
-            if (i == arrProduct.length -1) System.out.println("Корзина полна!");
+            if (i == arrProduct.length -1) System.out.println("Невозможно добавить продукт");
         }
     }
 
@@ -29,14 +29,29 @@ public class ProductBasket {
 
 public void printBasket(){
     int i = 0;
-        while (arrProduct[i] != null || i >= arrProduct.length - 1) {
+        for (; i < arrProduct.length; i++) {
+            if (arrProduct[i] == null) break;
             System.out.println(arrProduct[i]);
-            i++;
-    }
+        }
 
     if (i == 0) System.out.println("в корзине пусто");
     else
         System.out.println("Итого: " + "<" + this.getBasketCost() + ">");
 }
 
+    public boolean productEqual(String productName) {
+        for (int i = 0; i < arrProduct.length; i++) {
+            if (arrProduct[i] == null) break;
+            if (productName.equals(arrProduct[i].getProductName()))
+                return true;
+        }
+        return false;
+    }
+
+    public void basketClear(){
+        for (int i = 0; i < arrProduct.length; i++) {
+            if(arrProduct[i] == null) break;
+            arrProduct[i] = null;
+        }
+    }
 }

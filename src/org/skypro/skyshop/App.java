@@ -24,24 +24,26 @@ public class App {
         basket.AddProductToBasket(prSix);
         basket.printBasket();
 
-        if(basket.productEqual("Tomatoes"))
+        if (basket.productEqual("Tomatoes")) {
             System.out.println("Такой продукт в корзине есть");
-        else
+        } else {
             System.out.println("Такой продукт отсутствует в корзине");
-
-        if(basket.productEqual("Potatoes"))
+        }
+        if (basket.productEqual("Potatoes")) {
             System.out.println("Такой продукт в корзине есть");
-        else
+        } else {
             System.out.println("Такой продукт отсутствует в корзине");
+        }
 
         basket.basketClear();
         basket.printBasket();
         System.out.println("Стоимость пустой корзины: " + basket.getBasketCost());
 
-        if(basket.productEqual("Potatoes"))
+        if (basket.productEqual("Potatoes")) {
             System.out.println("Такой продукт в корзине есть");
-        else
+        } else {
             System.out.println("Такой продукт отсутствует в корзине");
+        }
     }
 
 }

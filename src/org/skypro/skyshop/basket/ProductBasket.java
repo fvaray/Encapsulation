@@ -4,53 +4,59 @@ import org.skypro.skyshop.product.Product;
 public class ProductBasket {
     private final static Product[] arrProduct = new Product[5];
 
-    public void AddProductToBasket(Product product){
-        if(product == null) System.out.println("Продукт пустой!");
+    public void AddProductToBasket(Product product) {
+        if (product == null) {
+            System.out.println("Продукт пустой!");
+        }
 
         for (int i = 0; i < arrProduct.length; i++) {
-            if(arrProduct[i] == null) {
+            if (arrProduct[i] == null) {
                 arrProduct[i] = new Product(product.getProductName(), product.getProductCost());
-                break;
+                return;
             }
-            if (i == arrProduct.length -1) System.out.println("Невозможно добавить продукт");
         }
+        System.out.println("Невозможно добавить продукт");
     }
 
-    public Integer getBasketCost(){
+    public int getBasketCost(){
         int sum = 0;
-        for (int i = 0; i < arrProduct.length; i++) {
-            if(arrProduct[i] == null) {
-                break;
+        for (Product product : arrProduct) {
+            if (product != null) {
+                sum += product.getProductCost();
             }
-            sum+= arrProduct[i].getProductCost();
         }
         return sum;
     }
 
-public void printBasket(){
-    int i = 0;
+    public void printBasket() {
+        int i = 0, j = 0;
         for (; i < arrProduct.length; i++) {
-            if (arrProduct[i] == null) break;
-            System.out.println(arrProduct[i]);
+            if (arrProduct[i] != null) {
+                System.out.println(arrProduct[i]);
+                j++;
+            }
         }
 
-    if (i == 0) System.out.println("в корзине пусто");
-    else
-        System.out.println("Итого: " + "<" + this.getBasketCost() + ">");
-}
+        if (j == 0) {
+            System.out.println("В корзине пусто");
+        } else {
+            System.out.println("Итого: " + "<" + this.getBasketCost() + ">");
+        }
+    }
 
     public boolean productEqual(String productName) {
-        for (int i = 0; i < arrProduct.length; i++) {
-            if (arrProduct[i] == null) break;
-            if (productName.equals(arrProduct[i].getProductName()))
-                return true;
+        for (Product product : arrProduct) {
+            if(product != null){
+                if (productName.equals(product.getProductName())){
+                    return true;
+                }
+            }
         }
         return false;
     }
 
     public void basketClear(){
         for (int i = 0; i < arrProduct.length; i++) {
-            if(arrProduct[i] == null) break;
             arrProduct[i] = null;
         }
     }

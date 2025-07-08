@@ -11,7 +11,7 @@ public class ProductBasket {
 
         for (int i = 0; i < arrProduct.length; i++) {
             if (arrProduct[i] == null) {
-                arrProduct[i] = new Product(product.getProductName(), product.getProductCost());
+                arrProduct[i] = product;
                 return;
             }
         }
@@ -22,25 +22,29 @@ public class ProductBasket {
         int sum = 0;
         for (Product product : arrProduct) {
             if (product != null) {
-                sum += product.getProductCost();
+                sum += product.getPrice();
             }
         }
         return sum;
     }
 
     public void printBasket() {
-        int i = 0, j = 0;
+        int i = 0, j = 0, s = 0;
         for (; i < arrProduct.length; i++) {
             if (arrProduct[i] != null) {
                 System.out.println(arrProduct[i]);
                 j++;
+                if(arrProduct[i].isSpecial()){
+                    s++;
+                }
             }
         }
 
         if (j == 0) {
             System.out.println("В корзине пусто");
         } else {
-            System.out.println("Итого: " + "<" + this.getBasketCost() + ">");
+            System.out.println("Итого: " + this.getBasketCost());
+            System.out.println("Специальных товаров: " + s);
         }
     }
 

@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public abstract class Product
 {
-    private String ProductName;
+    private String productName;
 
-    public Product(String ProductName){
-        this.ProductName = ProductName;
+    public Product(String productName){
+        this.productName = productName;
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     public abstract int getPrice();
@@ -19,21 +19,21 @@ public abstract class Product
 
     @Override
     public String toString() {
-        return ProductName;
+        return productName;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        //return Objects.equals(ProductName, product.ProductName) && Objects.equals(ProductCost, product.ProductCost);
-        return Objects.equals(ProductName, product.ProductName);
+        //return Objects.equals(productName, product.productName) && Objects.equals(ProductCost, product.ProductCost);
+        return Objects.equals(productName, product.productName);
     }
 
     @Override
     public int hashCode() {
-        //return Objects.hash(ProductName, ProductCost);
-        return Objects.hash(ProductName);
+        //return Objects.hash(productName, ProductCost);
+        return Objects.hash(productName);
     }
 
 

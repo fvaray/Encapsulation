@@ -1,8 +1,8 @@
 package org.skypro.skyshop;
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.FixPriceProduct;
-import org.skypro.skyshop.product.SimpleProduct;
-import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.*;
+
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
@@ -59,5 +59,19 @@ public class App {
         basket.AddProductToBasket(prOneFix);
         basket.AddProductToBasket(prTwoFix);
         basket.printBasket();
+
+        System.out.println("ООП. Полиморфизм. Интерфейсы.");
+        Article articleOne = new Article("Кошки", "Любимые питомцы");
+        Article articleTwo = new Article("Собака", "Друг человека");
+        Article articleThree = new Article("Макака", "Наши родственники");
+
+        SearchEngine searchEngine = new SearchEngine(5);
+        searchEngine.add(prOneDisc);
+        searchEngine.add(prOneFix);
+        searchEngine.add(articleOne);
+        searchEngine.add(articleTwo);
+        searchEngine.add(articleThree);
+
+        System.out.println(Arrays.toString(searchEngine.search("ака")));
     }
 }

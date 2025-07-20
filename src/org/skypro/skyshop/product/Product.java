@@ -1,5 +1,7 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.service.Searchable;
+
 import java.util.Objects;
 
 public abstract class Product implements Searchable
@@ -37,17 +39,12 @@ public abstract class Product implements Searchable
     }
 
     @Override
-    public String searchTerm() {
+    public String getSearchTerm() {
         return productName;
     }
 
     @Override
-    public Searchable nameObject() {
-        return Searchable.super.nameObject();
-    }
-
-    @Override
-    public String typeContent() {
+    public String getTypeContent() {
         return "PRODUCT";
     }
 

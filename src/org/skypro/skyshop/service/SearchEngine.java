@@ -1,4 +1,4 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.service;
 
 public class SearchEngine {
     private Searchable[] searchable;
@@ -11,7 +11,7 @@ public class SearchEngine {
         Searchable[] result = new Searchable[5];
         int i = 0;
         for (Searchable arr : searchable) {
-            if(arr.searchTerm().contains(term)){
+            if(arr.getSearchTerm().contains(term)){
                 result[i++] = arr;
             }
         }

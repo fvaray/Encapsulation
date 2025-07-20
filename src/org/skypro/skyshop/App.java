@@ -1,6 +1,8 @@
 package org.skypro.skyshop;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
+import org.skypro.skyshop.service.Article;
+import org.skypro.skyshop.service.SearchEngine;
 
 import java.util.Arrays;
 

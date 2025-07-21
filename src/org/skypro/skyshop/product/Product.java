@@ -1,6 +1,6 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.service.Searchable;
+import org.skypro.skyshop.search.Searchable;
 
 import java.util.Objects;
 

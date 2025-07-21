@@ -1,4 +1,4 @@
-package org.skypro.skyshop.service;
+package org.skypro.skyshop.search;
 
 public class SearchEngine {
     private Searchable[] searchable;

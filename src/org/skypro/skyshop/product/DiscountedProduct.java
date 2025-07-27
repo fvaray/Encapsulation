@@ -1,11 +1,17 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.exceptions.OutOfRangeException;
+
 public class DiscountedProduct extends Product{
     private int baseCost;
     private int discount;
 
-    public DiscountedProduct(String ProductName, int baseCost, int discount){
+    public DiscountedProduct(String ProductName, int baseCost, int discount)throws OutOfRangeException {
         super(ProductName);
+        if(discount < 0 || discount > 100){
+            throw new OutOfRangeException("Процент должен быть числом в диапазоне от 0 до 100 включительно!");
+        }
+
         this.baseCost = baseCost;
         this.discount = discount;
     }

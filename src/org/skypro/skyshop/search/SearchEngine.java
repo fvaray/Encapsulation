@@ -1,5 +1,7 @@
 package org.skypro.skyshop.search;
 
+import org.skypro.skyshop.exceptions.BestResultNotFound;
+
 public class SearchEngine {
     private Searchable[] searchable;
 
@@ -7,15 +9,40 @@ public class SearchEngine {
         this.searchable = new Searchable[size];
     }
 
-    public Searchable[] search(String term) {
-        Searchable[] result = new Searchable[5];
+
+
+    public Searchable searchRepeat(String term) throws BestResultNotFound{
+
         int i = 0;
+        int quantity = 0;
+        int max = 0;
+        int j = 0;
+
         for (Searchable arr : searchable) {
-            if(arr.getSearchTerm().contains(term)){
-                result[i++] = arr;
+            if( arr == null) {
+                break;
             }
+
+            int index = 0;
+            int indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
+            while(indexOfSubstring != -1){
+                quantity++;
+                index = indexOfSubstring + term.length();
+                indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
+            }
+            if (quantity > max) {
+                max = quantity;
+                j = i;
+            }
+            quantity = 0;
+            i++;
         }
-        return result;
+
+        if (max == 0){
+            throw new BestResultNotFound("Для поискового запроса строки " + '"' +
+                    term + '"' + " не нашлось ни в одном объекте!");
+        }
+        return searchable[j];
     }
 
     public void add(Searchable elem){

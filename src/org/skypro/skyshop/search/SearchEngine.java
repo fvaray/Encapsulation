@@ -9,24 +9,15 @@ public class SearchEngine {
         this.searchable = new Searchable[size];
     }
 
-    public Searchable[] search(String term) {
-        Searchable[] result = new Searchable[5];
-        int i = 0;
-        for (Searchable arr : searchable) {
-            if( arr == null) {
-                break;
-            }
-            if(arr.getSearchTerm().contains(term)){
-                result[i++] = arr;
-            }
-        }
-        return result;
-    }
+
 
     public Searchable searchRepeat(String term) throws BestResultNotFound{
-        Searchable[] result = new Searchable[5];
+
         int i = 0;
-        int[] quantity = {0,0,0,0,0};
+        int quantity = 0;
+        int max = 0;
+        int j = 0;
+
         for (Searchable arr : searchable) {
             if( arr == null) {
                 break;
@@ -35,20 +26,16 @@ public class SearchEngine {
             int index = 0;
             int indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
             while(indexOfSubstring != -1){
-                quantity[i] ++;
+                quantity++;
                 index = indexOfSubstring + term.length();
                 indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
             }
-            i++;
-        }
-
-        int max = quantity[0];
-        int j = 0;
-        for (i = 0; i<quantity.length; i++) {
-            if (quantity[i] > max) {
-                max = quantity[i];
+            if (quantity > max) {
+                max = quantity;
                 j = i;
             }
+            quantity = 0;
+            i++;
         }
 
         if (max == 0){

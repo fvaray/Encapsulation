@@ -1,12 +1,9 @@
 package org.skypro.skyshop;
-import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.search.SearchEngine;
-import org.skypro.skyshop.exceptions.IllegalArgumentException;
-
-import java.util.Arrays;
+import org.skypro.skyshop.exceptions.OutOfRangeException;
 
 public class App {
     public static void main(String[] args) {
@@ -14,23 +11,23 @@ public class App {
         System.out.println("Исключения в Java");
         try {
             SimpleProduct simpleProductBlank = new SimpleProduct("", 10);
-        } catch (IllegalArgumentException e) {
+        } catch (OutOfRangeException e) {
             System.out.println(e.toString());
         }
         try {
             SimpleProduct simpleProductMinus = new SimpleProduct("Milk", 0);
-        } catch (IllegalArgumentException e) {
+        } catch (OutOfRangeException e) {
             System.out.println(e.toString());
         }
 
         try {
             DiscountedProduct discountedProductZero = new DiscountedProduct("Milk", 100, 120);
-        } catch (IllegalArgumentException e) {
+        } catch (OutOfRangeException e) {
             System.out.println(e.toString());
         }
 
         Article articleOne = new Article("Кошки", "Любимые питомцы");
-        Article articleTwo = new Article("Собака", "Друг человека");
+        Article articleTwo = new Article("ака ака ака Собака", "Друг человека");
         Article articleThree = new Article("Макак ака аки", "Наши родственники");
 
         SearchEngine searchEngine = new SearchEngine(5);

@@ -1,13 +1,13 @@
 package org.skypro.skyshop.product;
-import org.skypro.skyshop.exceptions.IllegalArgumentException;
+import org.skypro.skyshop.exceptions.OutOfRangeException;
 
 public class SimpleProduct extends Product {
     private int productCost;
-    public SimpleProduct(String ProductName, int productCost ) throws IllegalArgumentException {
+    public SimpleProduct(String ProductName, int productCost ) throws OutOfRangeException {
         super(ProductName);
 
         if(productCost <= 0){
-            throw new IllegalArgumentException("Цена продукта не может быть ниже или равна 0!");
+            throw new OutOfRangeException("Цена продукта не может быть ниже или равна 0!");
         }
         this.productCost = productCost;
     }

@@ -1,7 +1,7 @@
 package org.skypro.skyshop.product;
 
 import org.skypro.skyshop.search.Searchable;
-import org.skypro.skyshop.exceptions.IllegalArgumentException;
+import org.skypro.skyshop.exceptions.OutOfRangeException;
 
 import java.util.Objects;
 
@@ -9,9 +9,9 @@ public abstract class Product implements Searchable
 {
     private String productName;
 
-    public Product(String productName) throws IllegalArgumentException {
+    public Product(String productName) throws OutOfRangeException {
             if(productName.isBlank()) {
-                throw new IllegalArgumentException("Название продукта отсутвует!");
+                throw new OutOfRangeException("Название продукта отсутвует!");
             }
             this.productName = productName;
     }

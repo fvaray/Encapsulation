@@ -2,13 +2,13 @@ package org.skypro.skyshop.exceptions;
 
 import java.io.IOException;
 
-public class IllegalArgumentException extends IOException {
+public class OutOfRangeException extends IOException {
     private String str;
-    public IllegalArgumentException(){
+    public OutOfRangeException(){
         super();
     }
 
-    public IllegalArgumentException(String s){
+    public OutOfRangeException(String s){
         super(s);
         str = s;
     }

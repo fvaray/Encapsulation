@@ -1,43 +1,46 @@
 package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ProductBasket {
-    private final static Product[] arrProduct = new Product[5];
+    public static List<Product> arrProduct = new LinkedList<>();
 
     public void AddProductToBasket(Product product) {
         if (product == null) {
             System.out.println("Продукт пустой!");
+            return;
         }
 
-        for (int i = 0; i < arrProduct.length; i++) {
-            if (arrProduct[i] == null) {
-                arrProduct[i] = product;
-                return;
-            }
-        }
-        System.out.println("Невозможно добавить продукт");
+        arrProduct.add(product);
+
     }
 
     public int getBasketCost(){
         int sum = 0;
-        for (Product product : arrProduct) {
-            if (product != null) {
-                sum += product.getPrice();
-            }
+        Iterator<Product> iterator = arrProduct.iterator();
+        while (iterator.hasNext()) {
+            Product element = iterator.next();
+            sum += element.getPrice();
         }
+
         return sum;
     }
 
     public void printBasket() {
         int i = 0, j = 0, s = 0;
-        for (; i < arrProduct.length; i++) {
-            if (arrProduct[i] != null) {
-                System.out.println(arrProduct[i]);
-                j++;
-                if(arrProduct[i].isSpecial()){
-                    s++;
-                }
+        // Получение итератора
+        Iterator<Product> iterator = arrProduct.iterator();
+        // Перебор элементов с использованием итератора
+        while (iterator.hasNext()) {
+            Product element = iterator.next();
+            System.out.println(element);
+            if(element.isSpecial()){
+                s++;
             }
+            j++;
         }
 
         if (j == 0) {
@@ -60,8 +63,26 @@ public class ProductBasket {
     }
 
     public void basketClear(){
-        for (int i = 0; i < arrProduct.length; i++) {
-            arrProduct[i] = null;
+        arrProduct.removeAll(arrProduct);
+    }
+
+    public List<Product> removeProduct(String name){
+        List<Product> listRemovedProducts = new LinkedList<>();
+        Iterator<Product> iterator = arrProduct.iterator();
+  /*      Product element = iterator.next();
+        iterator.remove();
+        listRemovedProducts.add(element);
+        element = iterator.next();
+        iterator.remove();
+        listRemovedProducts.add(element);
+*/
+        while (iterator.hasNext()) {
+            Product element = iterator.next();
+            if(element.getProductName().equals(name)){
+                iterator.remove();
+                listRemovedProducts.add(element);
+            }
         }
+        return listRemovedProducts;
     }
 }

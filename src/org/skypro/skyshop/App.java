@@ -33,11 +33,18 @@ public class App {
         Article articleOne = new Article("Кошки", "Любимые питомцы");
         Article articleTwo = new Article("ака ака ака Собака", "Друг человека");
         Article articleThree = new Article("Макак ака аки", "Наши родственники");
+        Article articleFour = new Article("Кошки2", "Любимые питомцы");
+        Article articleFive = new Article("Кошки3", "Любимые питомцы");
+        Article articleSix = new Article("Кошки4", "Любимые питомцы");
 
-        SearchEngine searchEngine = new SearchEngine(5);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(articleOne);
         searchEngine.add(articleTwo);
         searchEngine.add(articleThree);
+        searchEngine.add(articleFour);
+        searchEngine.add(articleFive);
+        searchEngine.add(articleSix);
+
         String subString = "ака";
         String subStringTwo = "лала";
         try {
@@ -52,14 +59,6 @@ public class App {
 
         System.out.println("Java Collections Framework: List");
         System.out.println("Task 1:");
-        List<Integer> list = new LinkedList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        System.out.println(list);
-        list.remove((Integer)3);
-        System.out.println(list);
 
         ProductBasket basket = new ProductBasket();
         SimpleProduct prOne = new SimpleProduct("Milk", 100);
@@ -89,6 +88,11 @@ public class App {
         System.out.println("Удаление несуществующего товара: " + basket.removeProduct("Болт"));
         System.out.println("Продукты, оставшиеся в корзине:");
         basket.printBasket();
+        System.out.println("Очистка корзины:");
+        basket.basketClear();
+        basket.printBasket();
+
+        searchEngine.PrintSearchable();
     }
 
 }

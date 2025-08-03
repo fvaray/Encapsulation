@@ -30,10 +30,8 @@ public class ProductBasket {
     }
 
     public void printBasket() {
-        int i = 0, j = 0, s = 0;
-        // Получение итератора
+        int j = 0, s = 0;
         Iterator<Product> iterator = arrProduct.iterator();
-        // Перебор элементов с использованием итератора
         while (iterator.hasNext()) {
             Product element = iterator.next();
             System.out.println(element);
@@ -69,13 +67,7 @@ public class ProductBasket {
     public List<Product> removeProduct(String name){
         List<Product> listRemovedProducts = new LinkedList<>();
         Iterator<Product> iterator = arrProduct.iterator();
-  /*      Product element = iterator.next();
-        iterator.remove();
-        listRemovedProducts.add(element);
-        element = iterator.next();
-        iterator.remove();
-        listRemovedProducts.add(element);
-*/
+
         while (iterator.hasNext()) {
             Product element = iterator.next();
             if(element.getProductName().equals(name)){

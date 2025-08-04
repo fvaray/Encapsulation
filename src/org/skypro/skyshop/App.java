@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class App {
-    public static void main(String[] args) throws OutOfRangeException {
+    public static void main(String[] args) {
 
         System.out.println("Исключения в Java");
         try {
@@ -61,28 +61,35 @@ public class App {
         System.out.println("Task 1:");
 
         ProductBasket basket = new ProductBasket();
-        SimpleProduct prOne = new SimpleProduct("Milk", 100);
-        SimpleProduct prTwo = new SimpleProduct("Broad", 50);
-        SimpleProduct prThree = new SimpleProduct("Chocolate", 150);
-        SimpleProduct prFour = new SimpleProduct("Milk", 200);
-        SimpleProduct prFive = new SimpleProduct("Tomatoes", 250);
-        SimpleProduct prSix = new SimpleProduct("Onion", 50);
-        DiscountedProduct prOneDisc = new DiscountedProduct("Milk", 100, 30);
-        DiscountedProduct prTwoDisc = new DiscountedProduct("Сorn", 90, 30);
-        FixPriceProduct prOneFix = new FixPriceProduct("Orange");
-        FixPriceProduct prTwoFix = new FixPriceProduct("Milk");
+        try {
+            SimpleProduct prOne = new SimpleProduct("Milk", 100);
+            SimpleProduct prTwo = new SimpleProduct("Broad", 50);
+            SimpleProduct prThree = new SimpleProduct("Chocolate", 150);
+            SimpleProduct prFour = new SimpleProduct("Milk", 200);
+            SimpleProduct prFive = new SimpleProduct("Tomatoes", 250);
+            SimpleProduct prSix = new SimpleProduct("Onion", 50);
+            DiscountedProduct prOneDisc = new DiscountedProduct("Milk", 100, 30);
+            DiscountedProduct prTwoDisc = new DiscountedProduct("Сorn", 90, 30);
+            FixPriceProduct prOneFix = new FixPriceProduct("Orange");
+            FixPriceProduct prTwoFix = new FixPriceProduct("Milk");
 
-        basket.AddProductToBasket(prOne);
-        basket.AddProductToBasket(prTwo);
-        basket.AddProductToBasket(prThree);
-        basket.AddProductToBasket(prFour);
-        basket.AddProductToBasket(prFive);
-        basket.AddProductToBasket(prSix);
-        basket.AddProductToBasket(prOneDisc);
-        basket.AddProductToBasket(prTwoDisc);
-        basket.AddProductToBasket(prOneFix);
-        basket.AddProductToBasket(prTwoFix);
-        basket.printBasket();
+            basket.AddProductToBasket(prOne);
+            basket.AddProductToBasket(prTwo);
+            basket.AddProductToBasket(prThree);
+            basket.AddProductToBasket(prFour);
+            basket.AddProductToBasket(prFive);
+            basket.AddProductToBasket(prSix);
+            basket.AddProductToBasket(prOneDisc);
+            basket.AddProductToBasket(prTwoDisc);
+            basket.AddProductToBasket(prOneFix);
+            basket.AddProductToBasket(prTwoFix);
+            basket.printBasket();
+        }
+        catch (OutOfRangeException e) {
+            System.out.println(e.toString());
+        }
+
+
         System.out.println("Task 2:");
         System.out.println("Удаленные товары: " + basket.removeProduct("Milk"));
         System.out.println("Удаление несуществующего товара: " + basket.removeProduct("Болт"));

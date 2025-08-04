@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ProductBasket {
-    public static List<Product> arrProduct = new LinkedList<>();
+    private static List<Product> arrProduct = new LinkedList<>();
 
     public void AddProductToBasket(Product product) {
         if (product == null) {
@@ -20,32 +20,30 @@ public class ProductBasket {
 
     public int getBasketCost(){
         int sum = 0;
-        Iterator<Product> iterator = arrProduct.iterator();
-        while (iterator.hasNext()) {
-            Product element = iterator.next();
-            sum += element.getPrice();
+        for (Product element : arrProduct)
+        {
+            sum+= element.getPrice();
         }
-
         return sum;
     }
 
     public void printBasket() {
-        int j = 0, s = 0;
-        Iterator<Product> iterator = arrProduct.iterator();
-        while (iterator.hasNext()) {
-            Product element = iterator.next();
+        int isBasketNotEmpty = 0, numSpecialProducts = 0;
+
+        for (Product element: arrProduct)
+        {
             System.out.println(element);
-            if(element.isSpecial()){
-                s++;
+            if (element.isSpecial()){
+                numSpecialProducts++;
             }
-            j++;
+            isBasketNotEmpty++;
         }
 
-        if (j == 0) {
+        if (isBasketNotEmpty == 0) {
             System.out.println("В корзине пусто");
         } else {
             System.out.println("Итого: " + this.getBasketCost());
-            System.out.println("Специальных товаров: " + s);
+            System.out.println("Специальных товаров: " + numSpecialProducts);
         }
     }
 
@@ -75,6 +73,7 @@ public class ProductBasket {
                 listRemovedProducts.add(element);
             }
         }
+
         return listRemovedProducts;
     }
 }

@@ -19,10 +19,6 @@ public class SearchEngine {
         int j = 0;
 
         for (Searchable arr : searchable) {
-            if (arr == null) {
-                break;
-            }
-
             int index = 0;
             int indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
             while (indexOfSubstring != -1) {

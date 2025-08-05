@@ -8,5 +8,6 @@ public interface Searchable {
 
     default String getStringRepresentation(){
         return this.toString();
+
     }
 }

@@ -1,12 +1,11 @@
 package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ProductBasket {
-    private static List<Product> arrProduct = new LinkedList<>();
+    private static Map<String, List<Product>> arrProduct = new HashMap<>();
+    private static List<Product> listProducts = new LinkedList<>();
 
     public void AddProductToBasket(Product product) {
         if (product == null) {
@@ -14,29 +13,44 @@ public class ProductBasket {
             return;
         }
 
-        arrProduct.add(product);
-
+        if(arrProduct.containsKey(product.getProductName())){
+            for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
+                if (entry.getKey().equals(product.getProductName())) {
+                    entry.getValue().add(product);
+                }
+            }
+        }
+        else
+        {
+            List<Product> listProducts = new LinkedList<>();
+            listProducts.add(product);
+            arrProduct.put(product.getProductName(),listProducts);
+        }
     }
 
     public int getBasketCost(){
         int sum = 0;
-        for (Product element : arrProduct)
-        {
-            sum+= element.getPrice();
-        }
-        return sum;
+         for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
+             for(Product element : entry.getValue())
+             {
+                 sum+=element.getPrice();
+             }
+         }
+         return sum;
     }
 
     public void printBasket() {
         int isBasketNotEmpty = 0, numSpecialProducts = 0;
 
-        for (Product element: arrProduct)
-        {
-            System.out.println(element);
-            if (element.isSpecial()){
-                numSpecialProducts++;
+        for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
+            for(Product element : entry.getValue())
+            {
+                System.out.println(element);
+                if (element.isSpecial()){
+                    numSpecialProducts++;
+                }
+                isBasketNotEmpty++;
             }
-            isBasketNotEmpty++;
         }
 
         if (isBasketNotEmpty == 0) {
@@ -48,29 +62,37 @@ public class ProductBasket {
     }
 
     public boolean productEqual(String productName) {
-        for (Product product : arrProduct) {
+    /*    for (Product product : arrProduct.values()) {
             if(product != null){
                 if (productName.equals(product.getProductName())){
                     return true;
                 }
             }
-        }
+        }*/
         return false;
     }
 
     public void basketClear(){
-        arrProduct.removeAll(arrProduct);
+        arrProduct.clear();
     }
 
     public List<Product> removeProduct(String name){
         List<Product> listRemovedProducts = new LinkedList<>();
-        Iterator<Product> iterator = arrProduct.iterator();
-
+       /* Iterator <Map.Entry<String,Product>> iterator = arrProduct.entrySet().iterator();
         while (iterator.hasNext()) {
-            Product element = iterator.next();
-            if(element.getProductName().equals(name)){
+            Map.Entry<String, Product> entry = iterator.next();
+            if(entry.getValue().getProductName().equals(name)){
                 iterator.remove();
-                listRemovedProducts.add(element);
+                listRemovedProducts.add(entry.getValue());
+            }
+        }*/
+
+        Iterator <Map.Entry<String,List<Product>>> iterator = arrProduct.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<Product>> entry = iterator.next();
+            if(entry.getKey().equals(name)){
+                listRemovedProducts.addAll(entry.getValue());
+                iterator.remove();
             }
         }
 

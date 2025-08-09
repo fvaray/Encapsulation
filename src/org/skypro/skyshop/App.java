@@ -30,12 +30,12 @@ public class App {
             System.out.println(e.toString());
         }
 
-        Article articleOne = new Article("Кошки", "Любимые питомцы");
+        Article articleOne = new Article("Яблоки", "Ред");
         Article articleTwo = new Article("ака ака ака Собака", "Друг человека");
         Article articleThree = new Article("Макак ака аки", "Наши родственники");
-        Article articleFour = new Article("Кошки2", "Любимые питомцы");
-        Article articleFive = new Article("Кошки3", "Любимые питомцы");
-        Article articleSix = new Article("Кошки4", "Любимые питомцы");
+        Article articleFour = new Article("Кошки", "Любимые питомцы");
+        Article articleFive = new Article("Тигр", "Царь джунглей");
+        Article articleSix = new Article("Орел", "Зоркий глаз");
 
         SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(articleOne);
@@ -64,7 +64,7 @@ public class App {
         try {
             SimpleProduct prOne = new SimpleProduct("Milk", 100);
             SimpleProduct prTwo = new SimpleProduct("Broad", 50);
-            SimpleProduct prThree = new SimpleProduct("Chocolate", 150);
+            SimpleProduct prThree = new SimpleProduct("Milk", 150);
             SimpleProduct prFour = new SimpleProduct("Milk", 200);
             SimpleProduct prFive = new SimpleProduct("Tomatoes", 250);
             SimpleProduct prSix = new SimpleProduct("Onion", 50);
@@ -99,7 +99,7 @@ public class App {
         basket.basketClear();
         basket.printBasket();
 
-        searchEngine.PrintSearchable();
+        //searchEngine.PrintSearchable();
     }
 
 }

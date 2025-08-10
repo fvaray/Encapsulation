@@ -4,8 +4,7 @@ import org.skypro.skyshop.product.Product;
 import java.util.*;
 
 public class ProductBasket {
-    private static Map<String, List<Product>> arrProduct = new HashMap<>();
-    private static List<Product> listProducts = new LinkedList<>();
+    private static final Map<String, List<Product>> arrProduct = new HashMap<>();
 
     public void AddProductToBasket(Product product) {
         if (product == null) {
@@ -78,14 +77,6 @@ public class ProductBasket {
 
     public List<Product> removeProduct(String name){
         List<Product> listRemovedProducts = new LinkedList<>();
-       /* Iterator <Map.Entry<String,Product>> iterator = arrProduct.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Product> entry = iterator.next();
-            if(entry.getValue().getProductName().equals(name)){
-                iterator.remove();
-                listRemovedProducts.add(entry.getValue());
-            }
-        }*/
 
         Iterator <Map.Entry<String,List<Product>>> iterator = arrProduct.entrySet().iterator();
         while (iterator.hasNext()) {

@@ -1,22 +1,16 @@
 package org.skypro.skyshop.search;
-
 import org.skypro.skyshop.exceptions.BestResultNotFound;
-import org.skypro.skyshop.product.Product;
 
-import java.awt.*;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
 
 public class SearchEngine {
+    //private final Map<String, Searchable> searchable = new HashMap<>();
     private final List<Searchable> searchable = new LinkedList<>();
 
-    public Searchable searchRepeat(String term) throws BestResultNotFound {
-
-        int i = 0;
+    public Map<String, Integer> searchRepeat(String term) throws BestResultNotFound {
         int quantity = 0;
-        int max = 0;
-        int j = 0;
+        Map<String,Integer> searchableList = new TreeMap<>();
 
         for (Searchable arr : searchable) {
             int index = 0;
@@ -26,32 +20,20 @@ public class SearchEngine {
                 index = indexOfSubstring + term.length();
                 indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
             }
-            if (quantity > max) {
-                max = quantity;
-                j = i;
+            if (quantity > 0) {
+                searchableList.put(arr.getSearchTerm(), quantity);
             }
             quantity = 0;
-            i++;
         }
 
-        if (max == 0) {
+        if (searchableList.isEmpty()) {
             throw new BestResultNotFound("Для поискового запроса строки " + '"' +
                     term + '"' + " не нашлось ни в одном объекте!");
         }
-        return searchable.get(j);
+        return searchableList;
     }
 
     public void add(Searchable elem) {
         searchable.add(elem);
-    }
-
-    public void PrintSearchable()
-    {
-        System.out.println("Список searchable для поиска:");
-        Iterator<Searchable> iterator = searchable.iterator();
-        while(iterator.hasNext()) {
-            Searchable element = iterator.next();
-            System.out.println(element);
-        }
     }
 }

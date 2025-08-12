@@ -3,8 +3,8 @@ package org.skypro.skyshop.product;
 import org.skypro.skyshop.exceptions.OutOfRangeException;
 
 public class DiscountedProduct extends Product{
-    private int baseCost;
-    private int discount;
+    private final int baseCost;
+    private final int discount;
 
     public DiscountedProduct(String ProductName, int baseCost, int discount)throws OutOfRangeException {
         super(ProductName);

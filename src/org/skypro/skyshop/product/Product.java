@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public abstract class Product implements Searchable
 {
-    private String productName;
+    private final String productName;
 
     public Product(String productName) throws OutOfRangeException {
             if(productName.isBlank()) {
@@ -45,11 +45,6 @@ public abstract class Product implements Searchable
     @Override
     public String getSearchTerm() {
         return productName;
-    }
-
-    @Override
-    public String getTypeContent() {
-        return "PRODUCT";
     }
 
     @Override

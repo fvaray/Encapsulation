@@ -80,16 +80,5 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println(e.toString());
         }
-        //searchEngine.PrintSearchable();
-        Set<String> tree = new TreeSet<>(new ReverseStringComparator());
-        // Добавляем в него строки в случайном порядке
-        tree.add("ab");
-        tree.add("ac");
-        tree.add("ad");
-        tree.add("aea");
-        System.out.println(tree);
-
     }
-
-
 }

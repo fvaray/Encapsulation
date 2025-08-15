@@ -3,8 +3,12 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.search.ReverseStringComparator;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.exceptions.OutOfRangeException;
+
+import java.util.Set;
+import java.util.TreeSet;
 
 
 public class App {
@@ -49,10 +53,10 @@ public class App {
         basket.printBasket();
 
         Article articleOne = new Article("ара ара", "Ред");
-        Article articleTwo = new Article("ара ара", "Друг");
+        Article articleTwo = new Article("аракул арас", "Друг");
         Article articleThree = new Article("Мара арка арамей", "Наши родственники");
         Article articleFour = new Article("арама араул аратович арабон", "Любимые питомцы");
-        Article articleFive = new Article("Тигр ара", "Царь джунглей");
+        Article articleFive = new Article("аракул арап", "Царь джунглей");
         Article articleSix = new Article("арал", "Зоркий глаз");
 
         SearchEngine searchEngine = new SearchEngine();
@@ -77,6 +81,15 @@ public class App {
             System.out.println(e.toString());
         }
         //searchEngine.PrintSearchable();
+        Set<String> tree = new TreeSet<>(new ReverseStringComparator());
+        // Добавляем в него строки в случайном порядке
+        tree.add("ab");
+        tree.add("ac");
+        tree.add("ad");
+        tree.add("aea");
+        System.out.println(tree);
+
     }
+
 
 }

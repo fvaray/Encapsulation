@@ -5,12 +5,11 @@ import java.util.*;
 import java.util.List;
 
 public class SearchEngine {
-    //private final Map<String, Searchable> searchable = new HashMap<>();
-    private final Set<Searchable> searchable = new LinkedHashSet<>();
+    private final Set<Searchable> searchable = new HashSet<>();
 
     public Set searchRepeat(String term) throws BestResultNotFound {
         int quantity = 0;
-        Set searchableList = new TreeSet<>(new ReverseStringComparator());
+        Set <String> searchableList = new TreeSet<>(new ReverseStringComparator());
 
         for (Searchable arr : searchable) {
             int index = 0;
@@ -40,13 +39,6 @@ public class SearchEngine {
     public void printSearchable(){
         for (Searchable arr : searchable) {
             System.out.println(arr);
-        }
-    }
-
-    public static class ReverseStringComparator implements Comparator<String> {
-        @Override
-        public int compare(String s1, String s2) {
-            return s2.length() - s1.length();
         }
     }
 }

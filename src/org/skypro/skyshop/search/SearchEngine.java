@@ -7,9 +7,9 @@ import java.util.List;
 public class SearchEngine {
     private final Set<Searchable> searchable = new HashSet<>();
 
-    public Set searchRepeat(String term) throws BestResultNotFound {
+    public Set<Searchable> searchRepeat(String term) throws BestResultNotFound {
         int quantity = 0;
-        Set <String> searchableList = new TreeSet<>(new ReverseStringComparator());
+        Set <Searchable> searchableList = new TreeSet<Searchable>(new ReverseStringComparator());
 
         for (Searchable arr : searchable) {
             int index = 0;
@@ -20,7 +20,7 @@ public class SearchEngine {
                 indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
             }
             if (quantity > 0) {
-                searchableList.add(arr.getSearchTerm());
+                searchableList.add(arr);
             }
             quantity = 0;
         }

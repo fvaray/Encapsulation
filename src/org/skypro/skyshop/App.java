@@ -3,8 +3,12 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.search.ReverseStringComparator;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.exceptions.OutOfRangeException;
+
+import java.util.Set;
+import java.util.TreeSet;
 
 
 public class App {
@@ -13,6 +17,7 @@ public class App {
         System.out.println("Java Collections Framework: List");
         System.out.println("Task 1:");
         ProductBasket basket = new ProductBasket();
+        FixPriceProduct prTwoFix = null;
         try {
             SimpleProduct prOne = new SimpleProduct("Milk", 100);
             SimpleProduct prTwo = new SimpleProduct("Broad", 50);
@@ -23,7 +28,7 @@ public class App {
             DiscountedProduct prOneDisc = new DiscountedProduct("Milk", 100, 30);
             DiscountedProduct prTwoDisc = new DiscountedProduct("Сorn", 90, 30);
             FixPriceProduct prOneFix = new FixPriceProduct("Orange");
-            FixPriceProduct prTwoFix = new FixPriceProduct("Milk");
+            prTwoFix = new FixPriceProduct("Milk");
             basket.AddProductToBasket(prOne);
             basket.AddProductToBasket(prTwo);
             basket.AddProductToBasket(prThree);
@@ -35,8 +40,7 @@ public class App {
             basket.AddProductToBasket(prOneFix);
             basket.AddProductToBasket(prTwoFix);
             basket.printBasket();
-        }
-        catch (OutOfRangeException e) {
+        } catch (OutOfRangeException e) {
             System.out.println(e.toString());
         }
 
@@ -48,12 +52,12 @@ public class App {
         basket.basketClear();
         basket.printBasket();
 
-        Article articleOne = new Article("Яблоки", "Ред");
-        Article articleTwo = new Article("ака ака ака Собака", "Друг человека");
-        Article articleThree = new Article("Макак ака аки", "Наши родственники");
-        Article articleFour = new Article("Кошки", "Любимые питомцы");
-        Article articleFive = new Article("Тигр", "Царь джунглей");
-        Article articleSix = new Article("Орел", "Зоркий глаз");
+        Article articleOne = new Article("ара ара", "Ред");
+        Article articleTwo = new Article("аракул арас", "Друг");
+        Article articleThree = new Article("Мара арка арамей", "Наши родственники");
+        Article articleFour = new Article("арама араул аратович арабон", "Любимые питомцы");
+        Article articleFive = new Article("аракул арап", "Царь джунглей");
+        Article articleSix = new Article("арал", "Зоркий глаз");
 
         SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(articleOne);
@@ -62,20 +66,19 @@ public class App {
         searchEngine.add(articleFour);
         searchEngine.add(articleFive);
         searchEngine.add(articleSix);
+        searchEngine.add(prTwoFix);
+        searchEngine.printSearchable();
 
         System.out.println("Task 2:");
-        String subString = "ака";
+        String subString = "ара";
         String subStringTwo = "лала";
         try {
             System.out.println("Список с вхождением  " + '"' + subString + '"' +
                     " имеют строки - " + searchEngine.searchRepeat(subString));
             System.out.println("Список с вхождением  " + '"' + subString + '"' +
                     " имеет объект - " + searchEngine.searchRepeat(subStringTwo));
-        }
-        catch (BestResultNotFound e){
+        } catch (BestResultNotFound e) {
             System.out.println(e.toString());
         }
-        //searchEngine.PrintSearchable();
     }
-
 }

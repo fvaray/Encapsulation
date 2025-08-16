@@ -5,12 +5,11 @@ import java.util.*;
 import java.util.List;
 
 public class SearchEngine {
-    //private final Map<String, Searchable> searchable = new HashMap<>();
-    private final List<Searchable> searchable = new LinkedList<>();
+    private final Set<Searchable> searchable = new HashSet<>();
 
-    public Map<String, Integer> searchRepeat(String term) throws BestResultNotFound {
+    public Set<Searchable> searchRepeat(String term) throws BestResultNotFound {
         int quantity = 0;
-        Map<String,Integer> searchableList = new TreeMap<>();
+        Set <Searchable> searchableList = new TreeSet<Searchable>(new ReverseStringComparator());
 
         for (Searchable arr : searchable) {
             int index = 0;
@@ -21,7 +20,7 @@ public class SearchEngine {
                 indexOfSubstring = arr.getSearchTerm().indexOf(term, index);
             }
             if (quantity > 0) {
-                searchableList.put(arr.getSearchTerm(), quantity);
+                searchableList.add(arr);
             }
             quantity = 0;
         }
@@ -35,5 +34,11 @@ public class SearchEngine {
 
     public void add(Searchable elem) {
         searchable.add(elem);
+    }
+
+    public void printSearchable(){
+        for (Searchable arr : searchable) {
+            System.out.println(arr);
+        }
     }
 }

@@ -13,8 +13,10 @@ public class Article implements Searchable {
 
     @Override
     public String getSearchTerm() {
-        return toString();
+        return articleName;
     }
+
+
 
     public int getPrice() {
         return 0;
@@ -26,6 +28,6 @@ public class Article implements Searchable {
 
     @Override
     public String toString() {
-        return articleName + '\'' + articleText + '\'';
+        return articleName + " - " + articleText;
     }
 }

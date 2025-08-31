@@ -29,13 +29,21 @@ public class ProductBasket {
 
     public int getBasketCost(){
         int sum = 0;
-         for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
+  /*       for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
              for(Product element : entry.getValue())
              {
                  sum+=element.getPrice();
              }
          }
-         return sum;
+*/
+        sum = arrProduct.values().stream()
+                .flatMap(Collection::stream)
+                .filter(Product::isSpecial)
+                .mapToInt(Product::getPrice)
+                .sum();
+
+        return sum;
+
     }
 
     public void printBasket() {

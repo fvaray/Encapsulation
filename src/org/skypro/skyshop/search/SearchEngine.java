@@ -42,8 +42,11 @@ public class SearchEngine {
     }
 
     public void printSearchable(){
-        for (Searchable arr : searchable) {
+        /*for (Searchable arr : searchable) {
             System.out.println(arr);
-        }
+        }*/
+        searchable.stream()
+                .toList().forEach(System.out::println);
+
     }
 }

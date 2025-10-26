@@ -34,14 +34,14 @@ public class App {
             prTwoFix = new FixPriceProduct("Milk");
             basket.AddProductToBasket(prOne);
             basket.AddProductToBasket(prTwo);
-            basket.AddProductToBasket(prThree);
-            basket.AddProductToBasket(prFour);
-            basket.AddProductToBasket(prFive);
-            basket.AddProductToBasket(prSix);
+            //basket.AddProductToBasket(prThree);
+            //basket.AddProductToBasket(prFour);
+            //basket.AddProductToBasket(prFive);
+            //basket.AddProductToBasket(prSix);
             basket.AddProductToBasket(prOneDisc);
             basket.AddProductToBasket(prTwoDisc);
-            basket.AddProductToBasket(prOneFix);
-            basket.AddProductToBasket(prTwoFix);
+            //basket.AddProductToBasket(prOneFix);
+            //basket.AddProductToBasket(prTwoFix);*/
             basket.printBasket();
         } catch (OutOfRangeException e) {
             System.out.println(e.toString());

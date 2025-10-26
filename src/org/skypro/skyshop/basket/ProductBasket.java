@@ -2,22 +2,26 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProductBasket {
     private static final Map<String, List<Product>> arrProduct = new HashMap<>();
 
     public void AddProductToBasket(Product product) {
+
         if (product == null) {
             System.out.println("Продукт пустой!");
             return;
         }
-
         if(arrProduct.containsKey(product.getProductName())){
-            for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
+            /*for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
                 if (entry.getKey().equals(product.getProductName())) {
                     entry.getValue().add(product);
                 }
-            }
+            }*/
+            arrProduct.entrySet().stream()
+                    .filter(entry-> entry.getKey().equals(product.getProductName()))
+                    .forEach(entry-> entry.getValue().add(product));
         }
         else
         {
@@ -29,19 +33,27 @@ public class ProductBasket {
 
     public int getBasketCost(){
         int sum = 0;
-         for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
+ /*        for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
              for(Product element : entry.getValue())
              {
                  sum+=element.getPrice();
              }
          }
-         return sum;
+*/
+        sum =  arrProduct.values().stream()
+                .flatMap(Collection::stream)
+                .mapToInt(Product::getPrice)
+                .sum();
+
+        return sum;
+
     }
 
     public void printBasket() {
-        int isBasketNotEmpty = 0, numSpecialProducts = 0;
+        AtomicInteger isBasketNotEmpty = new AtomicInteger();
+        AtomicInteger numSpecialProducts = new AtomicInteger();
 
-        for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
+/*        for (Map.Entry<String, List<Product>> entry : arrProduct.entrySet()) {
             for(Product element : entry.getValue())
             {
                 System.out.println(element);
@@ -50,9 +62,19 @@ public class ProductBasket {
                 }
                 isBasketNotEmpty++;
             }
-        }
+        }*/
+        arrProduct.values().stream()
+                .flatMap(Collection::stream)
+                .forEach(p->{
+                    if(p.isSpecial()){
+                        numSpecialProducts.getAndIncrement();
+                    }
+                    isBasketNotEmpty.getAndIncrement();
+                    System.out.println(p);
+                });
 
-        if (isBasketNotEmpty == 0) {
+
+        if (isBasketNotEmpty.get() == 0) {
             System.out.println("В корзине пусто");
         } else {
             System.out.println("Итого: " + this.getBasketCost());
